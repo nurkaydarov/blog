@@ -34,22 +34,18 @@
                     <div class="col-12">
                         <div class="card-body table-responsive p-0">
                             <table class="table table-hover text-nowrap">
-                                <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Title</th>
-                                    <th colspan="2">Actions</th>
-                                </tr>
-                                </thead>
                                 <tbody>
-                                @foreach($categories as $category)
-                                <tr>
-                                    <td>{{$category->id}}<td>
-                                    <td>{{$category->title}}</td>
-                                    <td><a href="{{route('admin.categories.show', $category->id)}}"><i class="fas fa-eye"></i></a></td>
-                                    <td><a href="{{route('admin.categories.edit', $category->id)}}"><i class="fas fa-edit"></i></a></td>
-                                </tr>
-                                @endforeach
+
+                                    <tr>
+                                        <td>ID<td>
+                                        <td>{{$category->id}}</td>
+
+                                    </tr>
+                                      <tr>
+                                          <td>Название<td>
+                                          <td>{{$category->title}}</td>
+                                      </tr>
+
                                 </tbody>
                             </table>
                         </div>

@@ -7,7 +7,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Add Categories</h1>
+                        <h1 class="m-0">Edit Category - {{$category->title}}</h1>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -28,16 +28,16 @@
 
                     <div class="col-12">
 
-                        <form action="{{route('admin.categories.store')}}" method="POST" class="w-25">
+                        <form action="#" method="POST" class="w-25">
                             @csrf
                             <div class="form-group">
                                 <label >Title</label>
-                                <input type="text" class="form-control mb-3" placeholder="Type title" name="title">
+                                <input type="text" class="form-control mb-3" placeholder="Type title" name="title" value="{{$category->title}}">
                                 @error('title')
-                                    <div class="text-danger">Это поле необходимо заполнить</div>
+                                <div class="text-danger">Это поле необходимо заполнить</div>
                                 @enderror
                             </div>
-                            <input type="submit" class="btn btn-primary" value="Send">
+                            <input type="submit" class="btn btn-primary" value="Update">
                         </form>
                     </div>
 
