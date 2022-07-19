@@ -59,7 +59,25 @@
 <script src="{{asset('assets/admin/blog/lte/scripts.js')}}"></script>
 
 <script>
+    $(function(){
+       bsCustomFileInput.init();
+    });
     $.widget.bridge('uibutton', $.ui.button)
+</script>
+<script>
+    $(document).ready(function() {
+        $('#summernote').summernote({
+            toolbar: [
+                ['style', ['style']],
+                ['font', ['bold', 'underline', 'clear']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['table', ['table']],
+                ['view', ['fullscreen', 'codeview', 'help']]
+            ]
+        });
+        $('.select2').select2();
+    });
 </script>
 
 </body>

@@ -12,6 +12,6 @@ class UpdateController extends \App\Http\Controllers\Controller
         $data = $request->validated();
         $category->update($data);
         $request->session()->flash('success', 'Category have been updated');
-        return redirect()->route('admin.categories.show');
+        return redirect()->route('admin.categories.show', compact('category'));
     }
 }

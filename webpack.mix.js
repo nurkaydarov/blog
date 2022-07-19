@@ -31,12 +31,18 @@ mix.scripts([
     'resources/admin/plugins/moment/moment.min.js',
     'resources/admin/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js',
     'resources/admin/dist/js/adminlte.js',
+    'resources/admin/plugins/summernote/summernote.min.js',
+    'resources/admin/plugins/bs-custom-file-input/bs-custom-file-input.min.js',
+    'resources/admin/plugins/select2/js/select2.full.min.js',
 ], 'public/assets/admin/blog/lte/scripts.js')
 
 mix.styles([
+        'resources/admin/plugins/select2/css/select2.min.css',
         'resources/admin/plugins/icheck-bootstrap/icheck-bootstrap.min.css',
         'resources/admin/dist/css/adminlte.min.css',
         'resources/admin/plugins/overlayScrollbars/css/OverlayScrollbars.min.css',
+        'resources/admin/plugins/summernote/summernote-bs4.css',
+
     ],
     'public/assets/admin/blog/lte/dist/css/styles.css'
     );
@@ -44,3 +50,4 @@ mix.styles([
 
 mix.css('resources/admin/plugins/fontawesome-free/css/all.min.css', '')
 mix.copyDirectory('resources/admin/plugins/fontawesome-free', 'public/assets/admin/plugins/fontawesome-free')
+mix.copyDirectory('resources/admin/plugins/summernote/font', 'public/assets/admin/blog/lte/dist/css/font')

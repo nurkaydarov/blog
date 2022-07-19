@@ -28,8 +28,9 @@
 
                     <div class="col-12">
 
-                        <form action="#" method="POST" class="w-25">
+                        <form action="{{route('admin.categories.update', $category->id)}}" method="POST" class="w-25">
                             @csrf
+                            @method('PATCH')
                             <div class="form-group">
                                 <label >Title</label>
                                 <input type="text" class="form-control mb-3" placeholder="Type title" name="title" value="{{$category->title}}">

@@ -38,16 +38,23 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>Title</th>
-                                    <th colspan="2">Actions</th>
+                                    <th>Actions</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 @foreach($categories as $category)
                                 <tr>
-                                    <td>{{$category->id}}<td>
+                                    <td>{{$category->id}}</td>
                                     <td>{{$category->title}}</td>
-                                    <td><a href="{{route('admin.categories.show', $category->id)}}"><i class="fas fa-eye"></i></a></td>
-                                    <td><a href="{{route('admin.categories.edit', $category->id)}}"><i class="fas fa-edit"></i></a></td>
+                                    <td>
+                                        <a href="{{route('admin.categories.show', $category->id)}}" class="btn btn-app"><i class="fas fa-eye"></i></a>
+                                        <a href="{{route('admin.categories.edit', $category->id)}}" class="text-success btn btn-app"><i class="fas fa-edit"></i></a>
+                                        <form action="{{route('admin.categories.delete', $category->id)}}" method="POST" class=" btn ">
+                                            @csrf
+                                            @method("DELETE")
+                                            <button type="submit"  class="btn-app text-danger"><i class="fas fa-trash"></i> </button>
+                                        </form>
+                                    </td>
                                 </tr>
                                 @endforeach
                                 </tbody>
