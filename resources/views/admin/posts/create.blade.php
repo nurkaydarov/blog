@@ -34,14 +34,14 @@
                                 <label >Title</label>
                                 <input type="text" class="form-control mb-3" placeholder="Type title" name="title" value="{{old('title')}}">
                                 @error('title')
-                                <div class="text-danger">Это поле необходимо заполнить</div>
+                                <div class="text-danger">{{$message}}</div>
                                 @enderror
                             </div>
 
                             <div class="form-group">
                                 <textarea id="summernote" name="content" ></textarea>
-                                @error('title')
-                                <div class="text-danger">Это поле необходимо заполнить</div>
+                                @error('content')
+                                <div class="text-danger">{{$message}}</div>
                                 @enderror
                             </div>
 
@@ -51,10 +51,11 @@
                                     <div class="custom-file">
                                         <input type="file" class="custom-file-input" id="exampleInputFile" name="preview_image">
                                         <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                                        @error('preview_image')
-                                        <div class="text-danger">Это поле должно быть изображением</div>
-                                        @enderror
+
                                     </div>
+                                    @error('preview_image')
+                                    <div class="text-danger">{{$message}}</div>
+                                    @enderror
 
                                 </div>
                             </div>
@@ -65,10 +66,11 @@
                                     <div class="custom-file">
                                         <input type="file" class="custom-file-input" id="exampleInputFile" name="main_image">
                                         <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                                        @error('main_image')
-                                        <div class="text-danger">Это поле должно быть изображением</div>
-                                        @enderror
+
                                     </div>
+                                    @error('main_image')
+                                    <div class="text-danger">{{$message}}</div>
+                                    @enderror
 
                                 </div>
                             </div>
@@ -87,7 +89,7 @@
                                     @endforeach
                                 </select>
                                 @error('category_id')
-                                <div class="text-danger">Это поле должно быть изображением</div>
+                                <div class="text-danger">{{$message}}</div>
                                 @enderror
                             </div>
 
@@ -103,7 +105,7 @@
                                     @endforeach
                                 </select>
                                 @error('tag_ids')
-                                <div class="text-danger">Ошибка в тегах</div>
+                                    <div class="text-danger">{{$message}}</div>
                                 @enderror
                             </div>
 

@@ -16,10 +16,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group(['namespace' => 'Blog'], function(){
-   Route::get('/', \App\Http\Controllers\Blog\IndexController::class);
+   Route::get('/', \App\Http\Controllers\Blog\IndexController::class)->name('home');
 });
 
-Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function(){
+Route::group(['namespace' => 'Admin', 'prefix' => 'admin' , 'middleware' => ['auth','admin']], function(){
     Route::group(['namespace' => 'Blog'], function(){
         Route::get('/', IndexController::class)->name('admin.home');
     });
@@ -52,6 +52,16 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function(){
        Route::get('/{tag}/edit', \App\Http\Controllers\Admin\Tag\EditController::class)->name('admin.tags.edit');
        Route::patch('/{tag}',\App\Http\Controllers\Admin\Tag\UpdateController::class)->name('admin.tags.update');
        Route::delete('/{tag}',\App\Http\Controllers\Admin\Tag\DestroyController::class)->name('admin.tags.delete');
+    });
+
+    Route::group(['namespace' => 'User', 'prefix' => 'users'], function(){
+       Route::get('/', \App\Http\Controllers\Admin\User\IndexController::class)->name('admin.users.index');
+       Route::get('/create', \App\Http\Controllers\Admin\User\CreateController::class)->name('admin.users.create');
+       Route::post('/', \App\Http\Controllers\Admin\User\StoreController::class)->name('admin.users.store');
+       Route::get('/{user}', \App\Http\Controllers\Admin\User\ShowController::class)->name('admin.users.show');
+       Route::get('/edit/{user}',\App\Http\Controllers\Admin\User\EditController::class)->name('admin.users.edit');
+       Route::patch('/{user}', \App\Http\Controllers\Admin\User\UpdateController::class)->name('admin.users.update');
+       Route::delete('/{user}', \App\Http\Controllers\Admin\User\DestroyController::class)->name('admin.users.delete');
     });
 });
 

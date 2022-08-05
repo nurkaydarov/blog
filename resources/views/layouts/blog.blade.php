@@ -52,7 +52,20 @@
                         <a class="nav-link" href="#"><span class="flag-icon flag-icon-squared rounded-circle flag-icon-gb"></span> Eng</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Download</a>
+                        @auth()
+                            <form action="{{route('logout')}}" method="POST">
+                                @csrf
+                                <input class="nav-link btn" type="submit" value="Logout" />
+                            </form>
+                        @endauth
+                        @guest()
+                            <form action="{{route('login')}}" method="GET">
+                                @csrf
+                                <input class="nav-link btn" type="submit" value="Login" />
+                            </form>
+                            @endguest
+
+
                     </li>
                 </ul>
             </div>
