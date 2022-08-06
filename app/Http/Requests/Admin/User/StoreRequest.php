@@ -27,9 +27,9 @@ class StoreRequest extends FormRequest
         return [
             'name' => 'required|string',
             'email' => 'required|email|unique:users',
-            'password' => ['required','confirmed', \Illuminate\Validation\Rules\Password::min(8)],
+            //'password' => ['required','confirmed', \Illuminate\Validation\Rules\Password::min(8)],
             'role' => ['required', 'integer'],
-            
+
         ];
     }
     public function messages()

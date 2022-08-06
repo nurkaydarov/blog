@@ -66,5 +66,5 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin' , 'middleware' => ['au
 });
 
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 

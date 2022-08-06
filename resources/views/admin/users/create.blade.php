@@ -44,7 +44,7 @@
                                 <div class="text-danger">{{$message}}</div>
                                 @enderror
                             </div>
-                            <div class="form-group">
+{{--                            <div class="form-group">
                                 <label >Password</label>
                                 <input type="password" class="form-control mb-3" placeholder="Type Password" name="password">
                                 @error('email')
@@ -57,7 +57,7 @@
                                 @error('email')
                                 <div class="text-danger">Это поле необходимо заполнить</div>
                                 @enderror
-                            </div>
+                            </div>--}}
 
                             <div class="form-group w-50">
                                 <label for="exampleSelectRounded0">Add Role</label>
