@@ -15,11 +15,53 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::group(['namespace' => 'Blog'], function(){
-   Route::get('/', \App\Http\Controllers\Blog\IndexController::class)->name('home');
+Route::group(['namespace' => 'Main'], function(){
+   Route::get('/', \App\Http\Controllers\Main\IndexController::class)->name('home');
+
 });
 
-Route::group(['namespace' => 'Admin', 'prefix' => 'admin' , 'middleware' => ['auth','admin']], function(){
+Route::group(['namespace' => 'Category', 'prefix' => 'categories'], function(){
+   Route::get('/', \App\Http\Controllers\Category\IndexController::class)->name('category.index');
+   Route::group(['namespace' => 'Post', 'prefix' => '{category}/post'], function(){
+      Route::get('/', \App\Http\Controllers\Category\Post\IndexController::class)->name('category.post.index');
+   });
+});
+
+Route::group(['namespace' => 'Post', 'prefix' => 'posts'], function(){
+    Route::get('/', \App\Http\Controllers\Post\IndexController::class)->name('post.index');
+    Route::get('/{post}', \App\Http\Controllers\Post\ShowController::class)->name('post.show');
+
+    Route::group(['namespace' => 'Comment', 'prefix' => '{post}/comments'], function (){
+        Route::post('/', \App\Http\Controllers\Post\Comment\StoreController::class)->name('post.comment.store');
+    });
+
+    Route::group(['namespace' => 'Liked', 'prefix' =>'{post}/likes'], function(){
+        Route::post('/', \App\Http\Controllers\Post\Liked\StoreController::class)->name('post.like.store');
+    });
+});
+
+Route::group(['namespace' => 'Personal', 'prefix' => 'personal', 'middleware' => ['auth', 'verified']], function (){
+
+    Route::group(['namespace' => 'Main'], function (){
+       Route::get('/', \App\Http\Controllers\Personal\Main\IndexController::class)->name('personal.index');
+    });
+
+    Route::group(['namespace' => 'Liked', 'prefix' => 'liked'], function(){
+        Route::get('/', \App\Http\Controllers\Personal\Liked\IndexController::class)->name('personal.liked.index');
+        Route::delete('/{post}',  \App\Http\Controllers\Personal\Liked\DeleteController::class)->name('personal.liked.delete');
+    });
+
+    Route::group(['namespace' => 'Comment', 'prefix' => 'comments'], function (){
+       Route::get('/', \App\Http\Controllers\Personal\Comment\IndexController::class)->name('personal.comments.index');
+       Route::get('/edit/{comment}', \App\Http\Controllers\Personal\Comment\EditController::class)->name('personal.comments.edit');
+       Route::patch('/{comment}', \App\Http\Controllers\Personal\Comment\UpdateController::class)->name('personal.comments.update');
+       Route::delete('/{comment}', \App\Http\Controllers\Personal\Comment\DeleteController::class)->name('personal.comments.delete');
+
+    });
+
+});
+
+Route::group(['namespace' => 'Admin', 'prefix' => 'admin' , 'middleware' => ['auth','admin', 'verified']], function(){
     Route::group(['namespace' => 'Blog'], function(){
         Route::get('/', IndexController::class)->name('admin.home');
     });
