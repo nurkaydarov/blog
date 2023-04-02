@@ -14,5 +14,7 @@ class Category extends Model
     protected $table = 'categories';
     protected $guarded = false; // Разрешаем вносить данные ко всем колонкам
 
-
+    public function posts(){
+        return $this->hasMany(Post::class, 'category_id', 'id');
+    }
 }
